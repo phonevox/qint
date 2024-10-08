@@ -1,0 +1,43 @@
+TIPO_INTEGRACAO=ixcsoft
+
+SCP_USER=root
+SCP_PATH_TO_TYPE=/etc/scp_folder/integracoes
+SCP_HOST_REMOTO=      # Onde fica os arquivos originais de integração
+SCP_VERSAO_INTEGRACAO=              # Qual versão da integração (com host remoto do PURA-LAB, essa informação se localiza em /etc/scp_folder/integracoes/{tipo}/{versão})
+SCP_DESTINO_PULL=.           # Pra onde, no servidor que está executando o script, será copiado as pastas base da integração. (dentro deste diretório que está o script integrador, será criado a pasta /versions/<tipoDaIntegracao>/<versaoIntegracao>/)
+
+DIR_ASTERISK_AGI=/var/lib/asterisk/agi-bin           # Onde está as AGIs, para o Asterisk (/var/lib/asterisk/agi-bin/)
+DIR_ASTERISK_EXTENSIONS=/etc/asterisk                # Qual a pasta onde ficam as Extensions (/etc/asterisk/)
+DIR_ASTERISK_PHP=/var/www/html                       # Onde fica a pasta de HTML (/var/www/html/)
+DIR_ASTERISK_SOUNDS=/var/lib/asterisk/sounds         # Onde fica os arquivos de áudios do Asterisk (/var/lib/asterisk/sounds)
+DIR_ASTERISK_MUSICONHOLD=/var/lib/asterisk/moh       # Onde fica a pasta de MusicOnHold do Asterisk (/var/lib/asterisk/moh)
+
+ID_TIMECONDITION_EXITPOINT=         # ID da Timecondition por onde, após passar TODO o fluxo, vai sair o atendimento do cliente. Idealmente, deve ser um CHECK de feriado.
+
+# PARÂMETROS ESPECÍFICOS PARA O ERP : IXCSoft
+
+# // -- // Servidor // -- //
+
+IP_HOST=
+PORTA_WEB=
+PROTOCOLO_WEB=
+TOKEN=
+ID_FILIAL=1                # ID da Filial, padrão 1
+
+# // -- // Setorial // -- //
+
+FILA_GERAL=                # Número da fila
+ID_DEPARTAMENTO_GERAL=     # ID que define o departamento do atendimento
+ID_ASSUNTO_GERAL=          # ID que define o assunto do atendimento
+
+FILA_COMERCIAL=
+ID_DEPARTAMENTO_COMERCIAL=
+ID_ASSUNTO_COMERCIAL=
+
+FILA_SUPORTE=
+ID_DEPARTAMENTO_SUPORTE=
+ID_ASSUNTO_SUPORTE=
+
+FILA_FINANCEIRO=
+ID_DEPARTAMENTO_FINANCEIRO=
+ID_ASSUNTO_FINANCEIRO=
