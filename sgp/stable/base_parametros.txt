@@ -1,9 +1,10 @@
 TIPO_INTEGRACAO=sgp
 
-SCP_USER=
-SCP_HOST_REMOTO=
-SCP_VERSAO_INTEGRACAO=
-SCP_DESTINO_PULL=.
+SFTP_USER=sftp
+SFTP_PATH_TO_TYPE=/sfiles/qint/integracoes
+SFTP_HOST_REMOTO=
+SFTP_VERSAO_INTEGRACAO=recent
+SFTP_DESTINO_PULL=.
 
 DIR_ASTERISK_AGI=/var/lib/asterisk/agi-bin           # Onde está as AGIs, para o Asterisk (/var/lib/asterisk/agi-bin/)
 DIR_ASTERISK_EXTENSIONS=/etc/asterisk                # Qual a pasta onde ficam as Extensions (/etc/asterisk/)

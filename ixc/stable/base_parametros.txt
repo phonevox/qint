@@ -1,10 +1,10 @@
 TIPO_INTEGRACAO=ixcsoft
 
-SCP_USER=root
-SCP_PATH_TO_TYPE=/etc/scp_folder/integracoes
-SCP_HOST_REMOTO=      # Onde fica os arquivos originais de integração
-SCP_VERSAO_INTEGRACAO=              # Qual versão da integração (com host remoto do PURA-LAB, essa informação se localiza em /etc/scp_folder/integracoes/{tipo}/{versão})
-SCP_DESTINO_PULL=.           # Pra onde, no servidor que está executando o script, será copiado as pastas base da integração. (dentro deste diretório que está o script integrador, será criado a pasta /versions/<tipoDaIntegracao>/<versaoIntegracao>/)
+SFTP_USER=sftp
+SFTP_PATH_TO_TYPE=/sfiles/qint/integracoes   # Onde fica os arquivos originais de integração
+SFTP_HOST_REMOTO=      # Qual o servidor que está com os arquivos originais de integração
+SFTP_VERSAO_INTEGRACAO=recent                # Qual versão da integração (com host remoto do PURA-LAB, essa informação se localiza em /sfiles/qint/integracoes/{tipo}/{versão})
+SFTP_DESTINO_PULL=.                          # Pra onde, no servidor que está executando o script, será copiado as pastas base da integração. (dentro deste diretório que está o script integrador, será criado a pasta /versions/<tipoDaIntegracao>/<versaoIntegracao>/)
 
 DIR_ASTERISK_AGI=/var/lib/asterisk/agi-bin           # Onde está as AGIs, para o Asterisk (/var/lib/asterisk/agi-bin/)
 DIR_ASTERISK_EXTENSIONS=/etc/asterisk                # Qual a pasta onde ficam as Extensions (/etc/asterisk/)

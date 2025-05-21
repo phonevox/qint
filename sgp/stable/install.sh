@@ -165,7 +165,7 @@ obter_parametros () {
     setando_diretorios_integracao () {
 
         # Não precisam ser preparadas (não vai verificar isso.)
-        INTEGRACAO_DIR_VERSOES=$SCP_DESTINO_PULL/versions
+        INTEGRACAO_DIR_VERSOES=$SFTP_DESTINO_PULL/versions
         INTEGRACAO_DIR_TIPO_LOCAL=$INTEGRACAO_DIR_VERSOES/$TIPO_INTEGRACAO
 
         declarar_path() {
@@ -192,7 +192,7 @@ obter_parametros () {
         declarar_path "INTEGRACAO_DIR_PHP" "$DIR_ASTERISK_PHP/$TIPO_INTEGRACAO"
         declarar_path "INTEGRACAO_DIR_SOUNDS" "$DIR_ASTERISK_SOUNDS/$TIPO_INTEGRACAO"
         declarar_path "INTEGRACAO_DIR_MOH" "$DIR_ASTERISK_MUSICONHOLD/$TIPO_INTEGRACAO"
-        declarar_path "INTEGRACAO_DIR_VERSAO_LOCAL" "$INTEGRACAO_DIR_TIPO_LOCAL/$SCP_VERSAO_INTEGRACAO"
+        declarar_path "INTEGRACAO_DIR_VERSAO_LOCAL" "$INTEGRACAO_DIR_TIPO_LOCAL/$SFTP_VERSAO_INTEGRACAO"
 
     }
     setando_diretorios_integracao
@@ -350,7 +350,7 @@ puxar_arquivos_integracao () {
             fi
         }
 
-        log "[$(colorir "amarelo" "MKDIR/TIPO_LOCAL")] Criando, caso não exista, a pasta-raiz, destino do SCP: \"$INTEGRACAO_DIR_TIPO_LOCAL\""
+        log "[$(colorir "amarelo" "MKDIR/TIPO_LOCAL")] Criando, caso não exista, a pasta-raiz, destino do SFTP: \"$INTEGRACAO_DIR_TIPO_LOCAL\""
         mkdir -p $INTEGRACAO_DIR_TIPO_LOCAL || local mkdir_status=$? # (tenta) Criar a pasta.
         checa_erro_mkdir # Verifica se falhou ou não.
         log "[$(colorir "amarelo" "MKDIR/TIPO_LOCAL")] Finalizado."
@@ -359,26 +359,26 @@ puxar_arquivos_integracao () {
 
     mkdir_dir_tipo_local # Cria o diretorio ./versions/{tipo}, e automaticamente verifica se deu algum erro nesse comando.
 
-    realiza_scp () {
-        checa_erro_scp () {
+    realiza_sftp () {
+        checa_erro_sftp () {
             if [[ $status -ne 0 ]]; then
-                log "[$(colorir "amarelo" "SCP")] $(colorir "vermelho" "ERROR") - Ocorreu algum erro ao tentar puxar os arquivos do host remoto. (status:$status) (host:$SCP_HOST_REMOTO)"
+                log "[$(colorir "amarelo" "SFTP")] $(colorir "vermelho" "ERROR") - Ocorreu algum erro ao tentar puxar os arquivos do host remoto. (status:$status) (host:$SFTP_HOST_REMOTO)"
                 echo -e "\n\nVerifique se o $(colorir "vermelho" "diretório que está tentando puxar"), está correto; pode ser um dos problemas. (NÃO É CERTEZA!)\n\n"
                 exit 1
             fi
         }
 
 
-        log "[$(colorir "amarelo" "SCP")] Puxando \"$(colorir "magenta_claro" "remote:/etc/scp_folder/integracoes/$TIPO_INTEGRACAO/$SCP_VERSAO_INTEGRACAO")\" -> \"$(colorir "magenta_claro" "local:$INTEGRACAO_DIR_TIPO_LOCAL")\""
-        echo -e "\n\n< $(colorir "ciano_claro" "Logue-se no HOST REMOTO ! [$SCP_USER@$SCP_HOST_REMOTO]") >\n\n"
+        log "[$(colorir "amarelo" "SFTP")] Puxando \"$(colorir "magenta_claro" "remote:$SFTP_PATH_TO_TYPE/$TIPO_INTEGRACAO/$SFTP_VERSAO_INTEGRACAO")\" -> \"$(colorir "magenta_claro" "local:$INTEGRACAO_DIR_TIPO_LOCAL")\""
+        echo -e "\n\n< $(colorir "ciano_claro" "Logue-se no HOST REMOTO ! [$SFTP_USER@$SFTP_HOST_REMOTO]") >\n\n"
 
-         # "-r" /etc/scp_folder/integracoes/sgp/v1-stable -> /etc/integrador/versions = /etc/integrador/versions/v1-stable
-        scp -r $SCP_USER@$SCP_HOST_REMOTO:/etc/scp_folder/integracoes/$TIPO_INTEGRACAO/$SCP_VERSAO_INTEGRACAO $INTEGRACAO_DIR_TIPO_LOCAL || local status=$? # EU NÃO VOU AUTOMATIZAR O PROCESSO DE REPASSAR À SENHA AO SCP. ISSO É EXTREMAMENTE INSEGURO.
-        checa_erro_scp # Verifica se falhou ou não.
-        log "[$(colorir "amarelo" "SCP")] $(colorir "verde" "SUCCESS") - Integração obtida com sucesso"
+         # "-r" /etc/sftp_folder/integracoes/sgp/v1-stable -> /etc/integrador/versions = /etc/integrador/versions/v1-stable
+        sftp -r $SFTP_USER@$SFTP_HOST_REMOTO:$SFTP_PATH_TO_TYPE/$TIPO_INTEGRACAO/$SFTP_VERSAO_INTEGRACAO $INTEGRACAO_DIR_TIPO_LOCAL || local status=$? # EU NÃO VOU AUTOMATIZAR O PROCESSO DE REPASSAR À SENHA AO SFTP. ISSO É EXTREMAMENTE INSEGURO.
+        checa_erro_sftp # Verifica se falhou ou não.
+        log "[$(colorir "amarelo" "SFTP")] $(colorir "verde" "SUCCESS") - Integração obtida com sucesso"
     }
 
-    realiza_scp # Realiza, de fato, o SCP, e informa caso der erro ou não.
+    realiza_sftp # Realiza, de fato, o SFTP, e informa caso der erro ou não.
 
 }
 
