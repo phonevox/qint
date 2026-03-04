@@ -2,7 +2,8 @@ TIPO_INTEGRACAO=ixcsoft
 
 SFTP_USER=sftp
 SFTP_PATH_TO_TYPE=/sfiles/qint/integracoes   # Onde fica os arquivos originais de integração
-SFTP_HOST_REMOTO=      # Qual o servidor que está com os arquivos originais de integração
+SFTP_HOST_REMOTO=                            # Qual o servidor que está com os arquivos originais de integração
+SFTP_PORT=                                   # Porta do servidor SFTP
 SFTP_VERSAO_INTEGRACAO=recent                # Qual versão da integração (com host remoto do PURA-LAB, essa informação se localiza em /sfiles/qint/integracoes/{tipo}/{versão})
 SFTP_DESTINO_PULL=.                          # Pra onde, no servidor que está executando o script, será copiado as pastas base da integração. (dentro deste diretório que está o script integrador, será criado a pasta /versions/<tipoDaIntegracao>/<versaoIntegracao>/)
 

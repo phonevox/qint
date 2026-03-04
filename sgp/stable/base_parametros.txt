@@ -3,6 +3,7 @@ TIPO_INTEGRACAO=sgp
 SFTP_USER=sftp
 SFTP_PATH_TO_TYPE=/sfiles/qint/integracoes
 SFTP_HOST_REMOTO=
+SFTP_PORT=                                   # Porta do servidor SFTP
 SFTP_VERSAO_INTEGRACAO=recent
 SFTP_DESTINO_PULL=.
 
