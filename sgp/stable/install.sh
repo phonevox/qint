@@ -374,7 +374,7 @@ puxar_arquivos_integracao () {
 
          # "-r" /etc/sftp_folder/integracoes/sgp/v1-stable -> /etc/integrador/versions = /etc/integrador/versions/v1-stable
         # sftp -r $SFTP_USER@$SFTP_HOST_REMOTO:$SFTP_PATH_TO_TYPE/$TIPO_INTEGRACAO/$SFTP_VERSAO_INTEGRACAO $INTEGRACAO_DIR_TIPO_LOCAL || local status=$? # EU NÃO VOU AUTOMATIZAR O PROCESSO DE REPASSAR À SENHA AO SFTP. ISSO É EXTREMAMENTE INSEGURO.
-        sftp -P "$SFTP_PORT" -r \ $SFTP_USER@$SFTP_HOST_REMOTO:$SFTP_PATH_TO_TYPE/$TIPO_INTEGRACAO/$SFTP_VERSAO_INTEGRACAO/ \ "$INTEGRACAO_DIR_TIPO_LOCAL" || local status=$?
+        sftp -P "$SFTP_PORT" -r "$SFTP_USER@$SFTP_HOST_REMOTO:$SFTP_PATH_TO_TYPE/$TIPO_INTEGRACAO/$SFTP_VERSAO_INTEGRACAO/" "$INTEGRACAO_DIR_TIPO_LOCAL" || local status=$?
         checa_erro_sftp # Verifica se falhou ou não.
         log "[$(colorir "amarelo" "SFTP")] $(colorir "verde" "SUCCESS") - Integração obtida com sucesso"
     }
